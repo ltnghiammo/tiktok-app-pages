@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TikTok OAuth Callback</title>
+<style>
+  body { font-family: Arial, sans-serif; max-width: 700px; margin: 60px auto; padding: 0 20px; line-height: 1.6; color: #1a1a1a; text-align: center; }
+  h1 { font-size: 24px; }
+  #code-box { font-size: 18px; background: #f2f2f2; padding: 16px; border-radius: 8px; word-break: break-all; margin-top: 20px; }
+  button { margin-top: 16px; padding: 10px 20px; font-size: 15px; cursor: pointer; }
+</style>
+</head>
+<body>
+<h1>TikTok authorization complete</h1>
+<p>Copy the code below and paste it back into the token-exchange script.</p>
+<div id="code-box">(reading URL...)</div>
+<button onclick="copyCode()">Copy code</button>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get("code");
+  const box = document.getElementById("code-box");
+  box.textContent = code ? code : "No 'code' parameter found in URL - authorization may have failed.";
+
+  function copyCode() {
+    navigator.clipboard.writeText(box.textContent);
+    alert("Copied!");
+  }
+</script>
+</body>
+</html>
